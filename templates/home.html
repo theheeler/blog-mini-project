@@ -9,10 +9,10 @@
 <body>
         <h1> Bolg </h1>
         <ul>
-            {%for post in posts %}
+            {% for post in posts %}
             <li>
-                <h2><a href="{{url_for('post_detail',id = post.id)}}">{{post.tile.}}</a></h2>
-                <p>{{post.content[:1000]}}...</p>
+                <h2><a href="{{ url_for('post_detail',id = post.id) }}">{{post.title}}</a></h2>
+                <p>{{post.content[:100]}}...</p>
             </li>
             {% endfor %}
         </ul>

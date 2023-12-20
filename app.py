@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my_blog.db'
 db = SQLAlchemy(app)
 
 # Define the Post model
@@ -28,21 +28,25 @@ def post_detail(id):
     post = Post.query.get(id)
     return render_template('post_detail.html', post=post)
 
-@app.route('/admin')
-def admin():
-    posts = Post.query.all()
-    return render_template('admin.html', posts=posts)
+# @app.route('/admin')
+# def admin():
+#     posts = Post.query.all()
+#     return render_template('admin.html', posts=posts)
 
-@app.route('/admin/add', methods=['POST'])
+@app.route('/admin/add', methods=['GET','POST'])
 def add_post():
-    title = request.form['title']
-    content = request.form['content']
+    if request.method == 'POST':
 
-    new_post = Post(title=title, content=content)
-    db.session.add(new_post)
-    db.session.commit()
+        title = request.form['title']
+        content = request.form['content']
 
-    return redirect(url_for('admin'))
+        new_post = Post(title=title, content=content)
+        db.session.add(new_post)
+        db.session.commit()
+
+        return redirect(url_for('admin'))
+    # handleing GET requests (render the form)
+    return render_template('admin.html', posts=Post.query.all())
 
 @app.route('/admin/delete/<int:id>')
 def delete_post(id):

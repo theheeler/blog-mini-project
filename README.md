@@ -1,4 +1,4 @@
-# blog_mani_project_using_flask
+# blog_mini_project_using_flask
 
 Objective: Create a simple personal blog platform where users can read posts, and the admin can add or delete posts.
 
@@ -21,9 +21,7 @@ pip install Flask-SQLAlchemy, Flask
 to run the project use this command  => "python app.py", if there is any error like module not found then stop your venv and then activae virtual envirnoment using this command ''venv\Scripts\activate'' again and Start using "flask run" command in your terminal to start the project once the project is started and visit "http://127.0.0.1:5000/" in your web browser
 
 
-to clone the repository:
 
-use the command "git clone https://github.com/baravind031/blog_mani_project_using_flask.git" to the local system.
 
 
 
